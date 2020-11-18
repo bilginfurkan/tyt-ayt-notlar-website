@@ -3,7 +3,7 @@ from flask_caching import Cache
 import os
 
 
-cache = Cache(config={"CACHE_TYPE": "null"})
+cache = Cache(config={"CACHE_TYPE": "simple"})
 
 
 def register_extensions(app):

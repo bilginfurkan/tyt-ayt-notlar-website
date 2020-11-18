@@ -60,6 +60,7 @@ def download_and_unzip_source():
 """
 Insensitive LS
 """
+@cache.memoize(60 * 60 * 24)
 def get_ls(path_obj):
     try:
         ls = os.listdir(path_obj.original)
