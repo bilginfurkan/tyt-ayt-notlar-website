@@ -1,0 +1,19 @@
+{% from "content/fs.html" import render_node %}
+{% from "content/breadcrumb.html" import render_breadcrumb %}
+{% extends "default.html" %}
+
+
+{% block body %}
+
+{{ render_breadcrumb(files[0].split_directories()) }}
+<div class="jumbotron"> 
+    <div class="container">
+        <ul>
+            {% for x in files %}
+            <li><p class="lead">{{ render_node(x, as_link=True) }}</p></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% macro render_breadcrumb(list) -%}
+
+<p class="lead"><a href="../">Geri dön</a></p>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        {% for x in list %}
+            {% if x == list|last %}
+                {% set is_active = True %}
+            {% endif %}
+            <li class="breadcrumb-item{% if not is_active %} active{% endif %}" aria-current="page">{{ x }}</li>
+        {% endfor %}
+    </ol>
+</nav>
+{%- endmacro %}

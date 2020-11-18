@@ -1,0 +1,13 @@
+{% macro render_node(folder, as_link=False) -%}
+
+    {% if as_link %}
+        <a href="/{{ folder.get_link() }}">
+    {% endif %}
+
+    {{ folder.get_current_directory() }}
+
+    {% if as_link %}
+        </a>
+    {% endif %}
+
+{%- endmacro %}
