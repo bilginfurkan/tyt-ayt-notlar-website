@@ -4,6 +4,7 @@ from zipfile import ZipFile
 from urllib.request import urlopen
 from flask import current_app as app
 from pathlib import Path
+from main import cache
 
 
 class NodePath():
