@@ -39,6 +39,9 @@ class NodePath():
     def get_file_name(self):
         head, tail = os.path.split(self.original)
         return tail 
+
+    def convert_to_title(self):
+        return " - ".join( self.stripped_original.split("/")[-2:] )
     
     def __repr__(self):
         return "<NodePath {}>".format(self.original)

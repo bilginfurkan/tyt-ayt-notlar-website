@@ -8,8 +8,8 @@ verify_ssl = true
 [packages]
 flask = "*"
 requests = "*"
-flask-misaka = "*"
 flask-caching = "*"
+markdown2 = "*"
 
 [requires]
 python_version = "3.8"

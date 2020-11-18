@@ -2,6 +2,9 @@
 {% from "content/breadcrumb.html" import render_breadcrumb %}
 {% extends "default.html" %}
 
+{% block title %}
+    {{ current_file.convert_to_title() }}
+{% endblock %}
 
 {% block body %}
 

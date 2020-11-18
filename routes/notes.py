@@ -18,7 +18,7 @@ def homepage(req_path):
         abort(404)
     
     if not path_obj.is_file():
-        return render_template("directory.html", files=file_controller.get_ls(path_obj))
+        return render_template("directory.html", current_file=path_obj, files=file_controller.get_ls(path_obj))
     elif path_obj.is_image():
         return send_file(path_obj.original)
     else:
