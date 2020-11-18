@@ -5,7 +5,7 @@ import os
 
 
 md = Misaka()
-cache = Cache(config={"CACHE_TYPE": "simple"})
+cache = Cache(config={"CACHE_TYPE": "null"})
 
 
 def register_extensions(app):

@@ -7,21 +7,37 @@ from pathlib import Path
 
 
 class NodePath():
-    def __init__(self, original, sanitized, is_file, stripped_original):
+    def __init__(self, original, sanitized, stripped_original):
         self.original = original
         self.sanitized = sanitized
-        self.is_file = is_file
         self.stripped_original = stripped_original
     
     def get_link(self):
-        return sanitize_path(self.stripped_original) + "/"
+        link = sanitize_path(self.stripped_original)
+        if not self.is_file():
+            link += "/"
 
+        return link
+    
     def split_directories(self, remove_last=True):
         split = self.stripped_original.split("/") #remove last element of the array
         return split if not remove_last else split[:-1]
         
     def get_current_directory(self):
         return self.stripped_original.split("/")[-1] #get last element of the array
+
+    def is_file(self):
+        return os.path.isfile(self.original)
+
+    def is_image(self):
+        if not self.is_file():
+            return False
+
+        filename, file_extension = os.path.splitext(self.original)
+        return file_extension in [ ".jpg", ".jpeg", ".png", ".bmp", ".gif" ]
+    
+    def __repr__(self):
+        return "<NodePath {}>".format(self.original)
 
 
 def download_and_unzip_source():
@@ -64,11 +80,11 @@ def path_exists(path):
     path = sanitize_path(os.environ["zip_file_folder"] + "/" + path) #sanitize path
 
     if not path in [ x.sanitized for x in compiled_file_paths ]: #check if path is in compiled file paths
-        return False, None, None
+        return False, None
 
     file = [ x for x in compiled_file_paths if x.sanitized == path ][0] #if it is, select it
 
-    return True, file.is_file, file
+    return True, file
 
 
 def compile_paths():
@@ -77,11 +93,10 @@ def compile_paths():
 
     for path in all_paths:
         str_path = str(path)
-        is_file = ".md" in str_path
 
         sanitized_path = sanitize_path(str_path)
 
-        compiled.append(NodePath(str_path, sanitized_path, is_file, str_path.replace(os.environ["zip_file_folder"] + "/", "").replace(".md", "")))
+        compiled.append(NodePath(str_path, sanitized_path, str_path.replace(os.environ["zip_file_folder"] + "/", "").replace(".md", "")))
 
     return compiled
 
