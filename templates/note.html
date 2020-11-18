@@ -7,7 +7,7 @@
 
 <div class="jumbotron">
     <div class="container standart-font-size">
-        {{ content|markdown }}
+        {{ (process_md(content) | safe ) | markdown }}
     </div>
 </div>  
 

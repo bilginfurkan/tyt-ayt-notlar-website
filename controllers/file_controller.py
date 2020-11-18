@@ -35,6 +35,10 @@ class NodePath():
 
         filename, file_extension = os.path.splitext(self.original)
         return file_extension in [ ".jpg", ".jpeg", ".png", ".bmp", ".gif" ]
+
+    def get_file_name(self):
+        head, tail = os.path.split(self.original)
+        return tail 
     
     def __repr__(self):
         return "<NodePath {}>".format(self.original)
@@ -108,6 +112,14 @@ def sanitize_path(path):
         path = path.replace(a, b)
     
     return path.replace(" ", "-").replace(".md", "").lower()
+
+
+def get_media(name):
+    filtered = [ x for x in compiled_file_paths if x.get_file_name() == name and x.is_image() ]
+    if len(filtered) < 1:
+        return None
+
+    return filtered[0]
 
 
 compiled_file_paths = compile_paths()
