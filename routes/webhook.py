@@ -4,7 +4,7 @@ from main import cache
 import controllers.file_controller as file_controller
 import os
 
-@app.route("/webhook")
+@app.route("/webhook", methods=["POST"])
 def webhook():
     if request.args.get("token") != os.environ["webhook_token"]:
         abort(403)
