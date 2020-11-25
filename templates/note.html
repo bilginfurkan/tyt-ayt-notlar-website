@@ -7,7 +7,7 @@
 
 {% block body %}
 
-{{ render_breadcrumb(file.split_directories(remove_last=False)) }}
+{{ render_breadcrumb(file.split_directories(remove_last=False), is_file=True) }}
 
 <div class="jumbotron">
     <div class="container standart-font-size">

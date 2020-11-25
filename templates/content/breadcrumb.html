@@ -1,6 +1,14 @@
-{% macro render_breadcrumb(list) -%}
+{% macro render_breadcrumb(list, is_file=False) -%}
 
-<p class="lead"><a href="../">Geri dön</a></p>
+<p class="lead">
+    {% set href = "../" %}
+    {% if is_file %}
+        {% set href = "./" %}
+    {% endif %}
+    
+    <a href="{{ href }}">Geri dön</a>
+</p>
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         {% for x in list %}

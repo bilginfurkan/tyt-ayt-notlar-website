@@ -70,7 +70,9 @@ def get_ls(path_obj):
             full_path = path_obj.original + "/" + x
 
             file = [ x for x in compiled_file_paths if x.original == full_path ][0]
-
+            if file.get_file_name() == "Medya":
+                continue
+            
             result.append(file)
         
         return result
