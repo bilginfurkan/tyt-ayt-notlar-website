@@ -1,3 +1,4 @@
 *.sh
 *.pyc
 tyt-ayt-notlar-main/*
+*.ini

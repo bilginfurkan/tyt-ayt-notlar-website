@@ -1,4 +1,5 @@
 import os
+import shutil
 from io import BytesIO
 from zipfile import ZipFile
 from urllib.request import urlopen
@@ -50,10 +51,13 @@ class NodePath():
 
 def download_and_unzip_source():
     global compiled_file_paths
+
     
     resp = urlopen(os.environ["zip_file_url"])
     zipfile = ZipFile(BytesIO(resp.read())) 
-    zipfile.extractall()
+
+    shutil.rmtree(os.environ["zip_file_folder"]) #Remove existing folder
+    zipfile.extractall() #Extract zip
 
     compiled_file_paths = compile_paths()
 
