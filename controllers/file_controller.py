@@ -31,12 +31,12 @@ class NodePath():
     def is_file(self):
         return os.path.isfile(self.original)
 
-    def is_image(self):
+    def is_media(self):
         if not self.is_file():
             return False
 
         filename, file_extension = os.path.splitext(self.original)
-        return file_extension in [ ".jpg", ".jpeg", ".png", ".bmp", ".gif" ]
+        return file_extension in [ ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".txt" ]
 
     def get_file_name(self):
         head, tail = os.path.split(self.original)
@@ -126,7 +126,7 @@ def sanitize_path(path):
 
 
 def get_media(name):
-    filtered = [ x for x in compiled_file_paths if x.get_file_name() == name and x.is_image() ]
+    filtered = [ x for x in compiled_file_paths if x.get_file_name() == name and x.is_media() ]
     if len(filtered) < 1:
         return None
 
