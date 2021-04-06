@@ -8,10 +8,12 @@
 {% block body %}
 
 {{ render_breadcrumb(file.split_directories(remove_last=False), is_file=True) }}
+<script>
+    var markdownData = `{{ content|safe }}`;
+</script>
 
 <div class="jumbotron">
-    <div class="container standart-font-size">
-        {{ process_md(content)|safe  }}
+    <div class="container standart-font-size" id="content">
     </div>
 </div>  
 
